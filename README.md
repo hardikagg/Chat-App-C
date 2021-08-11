@@ -1,4 +1,4 @@
-# Chat-App-C
+# Chat-App-CPP
 A chat application using client server model based on TCP/IP protocol.
 Concept of Socket Programming is used here.
 
@@ -10,8 +10,8 @@ How to run it?
 2. Open the cygwin terminal twice. One for server and one for client. Open the directory where the files are located.
 
 3. Compile the files. Commands: <br>
-      &nbsp; &nbsp;&nbsp; gcc -o server server.c <br/>
-      &nbsp;&nbsp;&nbsp;&nbsp; gcc -o client client.c
+      &nbsp; &nbsp;&nbsp; gcc -o server server.cpp <br/>
+      &nbsp;&nbsp;&nbsp;&nbsp; gcc -o client client.cpp
        
 4. Run the files using commands: <br>
       &nbsp;&nbsp;&nbsp; ./server <br>
@@ -19,4 +19,4 @@ How to run it?
        
 5. Enter the messages!
 
-Note: Suggestions and feedback are welcomed for converting it into C++ and to make it work on Windows Terminal.
+Note: Suggestions and feedback needed to make it work on Windows Terminal.
