@@ -1,11 +1,8 @@
 #include<iostream>
-#include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
-#include <sys/types.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
 #include <netdb.h>
 #define PORT 20001
 using namespace std;
@@ -41,11 +38,14 @@ int main()
 
     while(1)
     {
-        printf("Please enter the message: ");
+        cout<<"\nPlease enter the message: ";
         bzero(buffer, 256);
         fgets(buffer,255,stdin);
         if(strncmp(buffer,"end",3)==0)
+        {
+            n = send(sockfd, buffer, strlen(buffer), 0);
             break;
+        }
 
         n = send(sockfd, buffer, strlen(buffer), 0);
         if (n < 0)
@@ -54,9 +54,10 @@ int main()
         bzero(buffer, 256);
 
         n = recv(sockfd, buffer, 255, 0);
+        if(strncmp(buffer, "end", 3)==0) {cout<<"\nChat terminated by server."; break;}
         if (n < 0)
             error("ERROR reading from socket");
-        printf("Server: %s\n", buffer);
+        cout<<"\nServer: "<<buffer;
     }
 
     close(sockfd);

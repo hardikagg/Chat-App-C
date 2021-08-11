@@ -1,12 +1,10 @@
 #include<iostream>
-#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include <sys/types.h>
 #include <sys/socket.h>
-#include <netinet/in.h>
 #include <arpa/inet.h>
+#include<netdb.h>
 #define PORT 20001
 using namespace std;
 
@@ -44,8 +42,7 @@ int main()
      if (newsockfd < 0)
           error("ERROR on accept");
 
-     printf("server: got connection from %s port %d\n", inet_ntoa(cli_addr.sin_addr), ntohs(cli_addr.sin_port));
-
+       cout<<"server: got connection from "<<inet_ntoa(cli_addr.sin_addr)<<" port "<<ntohs(cli_addr.sin_port)<<endl;
      while(1)
      {
          bzero(buffer, 256);
@@ -54,13 +51,14 @@ int main()
          if (n < 0)
             error("ERROR reading from socket");
 
-         printf("Client: %s",buffer);
+         if(strncmp(buffer, "end", 3)==0) {cout<<"\nChat terminated by client."; break;}
+         cout<<"\nClient: "<<buffer;
          bzero(buffer, 256);
 
-         printf("\nEnter data to be send to client: ");
+         cout<<"\nEnter data to be send to client: ";
          fgets(buffer,255,stdin);
          if(strncmp(buffer,"end",3)==0)
-            break;
+            {n=send(newsockfd,buffer,255,0); break;}
          n=send(newsockfd,buffer,255,0);
          if(n<0)
             error("Error in sending");
