@@ -1,3 +1,4 @@
+#include<iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -7,7 +8,7 @@
 #include <netinet/in.h>
 #include <netdb.h>
 #define PORT 20001
-
+using namespace std;
 void error(const char *msg)
 {
     perror(msg);

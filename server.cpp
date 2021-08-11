@@ -1,3 +1,4 @@
+#include<iostream>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -7,6 +8,7 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #define PORT 20001
+using namespace std;
 
 void error(const char *msg)
 {
